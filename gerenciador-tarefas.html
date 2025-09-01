@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2> minhas tarefas </h2>
+
+    <form id='formTarefa'>
+        <label>Tarefa: </label>
+        <input id='inputTarefas' type="text" placeholder="Digite a tarefa ...">
+        <button>Adicionar</button>
+    </form>
+
+    <h3>Lista de Tarefas</h3>
+    <ul id='listaTarefas'></ul>
+
+    <script>
+        let lista = ["estudar JS", "estudar SQL", "estudar FRONT-END"]
+
+        const form = document.getElementById('formTarefa')
+        const input = document.getElementById('inputTarefas')
+        const ul   = document.getElementById('listaTarefas')
+
+        function atualizarLista(){
+            ul.innerHTML = ''
+
+            lista.forEach((tarefa, index) => {
+                let li = document.createElement('li')
+                li.textContent = tarefa
+           
+
+                let btnEditar = document.createElement('button')
+                btnEditar.textContent = "editar"
+
+                btnEditar.onclick = () => {
+                    let nomeTarefa = prompt('digite o novo nome de', tarefa)
+                    if(nomeTarefa){
+                        lista(index) = nomeTarefa
+                        atualizarLista()
+                    }
+
+                }
+
+                form
+
+                let btnExcluir = document.createElement('button')
+                btnExcluir.textContent = 'Excluir'
+
+                btnExcluir.onclick = ()=>{
+                    if(confirm('deseja realmente excluir')){}
+                    lista.splice(index,1)
+                atualizarLista()
+                
+                }
+
+                li.appendChild(btnEditar)
+                li.appendChild(btnExcluir)
+                ul.appendChild(li)
+
+            })
+        }
+
+        atualizarLista()
+    </script>
+
+</body>
+</html>
